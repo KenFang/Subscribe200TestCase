@@ -7,7 +7,7 @@ async fn health_check() -> HttpResponse {
 }
 
 // Let's start simple: We always return a 200 Ok
-async fn subuscribe()-> HttpResponse {
+async fn subscribe()-> HttpResponse {
     HttpResponse::Ok().finish()
 }
 
@@ -17,7 +17,7 @@ pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
         App::new()
             .route("/health_check", web::get().to(health_check))
             // A new entry in our routing table for POST /subscriptions requests
-            .route("/subscriptions", web::post().to(subuscribe))
+            .route("/subscriptions", web::post().to(subscribe))
     })
         .listen(listener)?
         .run();
